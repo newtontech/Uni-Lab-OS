@@ -20,6 +20,14 @@ from unilabos.app.utils import cleanup_for_restart
 from unilabos.utils.banner_print import print_status, print_unilab_banner
 from unilabos.config.config import load_config, BasicConfig, HTTPConfig
 
+# 导入 i18n 支持
+try:
+    from unilabos.i18n import _
+except ImportError:
+    # 如果 i18n 模块不可用，使用空翻译
+    def _(message: str) -> str:
+        return message
+
 # Global restart flags (used by ws_client and web/server)
 _restart_requested: bool = False
 _restart_reason: str = ""
@@ -30,13 +38,13 @@ def load_config_from_file(config_path):
         config_path = os.environ.get("UNILABOS_BASICCONFIG_CONFIG_PATH", None)
     if config_path:
         if not os.path.exists(config_path):
-            print_status(f"配置文件 {config_path} 不存在", "error")
+            print_status(_("配置文件 {config_path} 不存在").format(config_path=config_path), "error")
         elif not config_path.endswith(".py"):
-            print_status(f"配置文件 {config_path} 不是Python文件，必须以.py结尾", "error")
+            print_status(_("配置文件 {config_path} 不是Python文件，必须以.py结尾").format(config_path=config_path), "error")
         else:
             load_config(config_path)
     else:
-        print_status(f"启动 UniLab-OS时，配置文件参数未正确传入 --config '{config_path}' 尝试本地配置...", "warning")
+        print_status(_("启动 UniLab-OS时，配置文件参数未正确传入 --config '{config_path}' 尝试本地配置...").format(config_path=config_path), "warning")
         load_config(config_path)
 
 
@@ -53,23 +61,23 @@ def convert_argv_dashes_to_underscores(args: argparse.ArgumentParser):
 
 def parse_args():
     """解析命令行参数"""
-    parser = argparse.ArgumentParser(description="Start Uni-Lab Edge server.")
+    parser = argparse.ArgumentParser(description=_("Start Uni-Lab Edge server."))
     subparsers = parser.add_subparsers(title="Valid subcommands", dest="command")
 
-    parser.add_argument("-g", "--graph", help="Physical setup graph file path.")
-    parser.add_argument("-c", "--controllers", default=None, help="Controllers config file path.")
+    parser.add_argument("-g", "--graph", help=_("Physical setup graph file path."))
+    parser.add_argument("-c", "--controllers", default=None, help=_("Controllers config file path."))
     parser.add_argument(
         "--registry_path",
         type=str,
         default=None,
         action="append",
-        help="Path to the registry directory",
+        help=_("Path to the registry directory"),
     )
     parser.add_argument(
         "--working_dir",
         type=str,
         default=None,
-        help="Path to the working directory",
+        help=_("Path to the working directory"),
     )
     parser.add_argument(
         "--backend",
@@ -86,44 +94,44 @@ def parse_args():
     parser.add_argument(
         "--is_slave",
         action="store_true",
-        help="Run the backend as slave node (without host privileges).",
+        help=_("Run the backend as slave node (without host privileges)."),
     )
     parser.add_argument(
         "--slave_no_host",
         action="store_true",
-        help="Skip waiting for host service in slave mode",
+        help=_("Skip waiting for host service in slave mode"),
     )
     parser.add_argument(
         "--upload_registry",
         action="store_true",
-        help="Upload registry information when starting unilab",
+        help=_("Upload registry information when starting unilab"),
     )
     parser.add_argument(
         "--use_remote_resource",
         action="store_true",
-        help="Use remote resources when starting unilab",
+        help=_("Use remote resources when starting unilab"),
     )
     parser.add_argument(
         "--config",
         type=str,
         default=None,
-        help="Configuration file path, supports .py format Python config files",
+        help=_("Configuration file path, supports .py format Python config files"),
     )
     parser.add_argument(
         "--port",
         type=int,
         default=None,
-        help="Port for web service information page",
+        help=_("Port for web service information page"),
     )
     parser.add_argument(
         "--disable_browser",
         action="store_true",
-        help="Disable opening information page on startup",
+        help=_("Disable opening information page on startup"),
     )
     parser.add_argument(
         "--2d_vis",
         action="store_true",
-        help="Enable 2D visualization when starting pylabrobot instance",
+        help=_("Enable 2D visualization when starting pylabrobot instance"),
     )
     parser.add_argument(
         "--visual",
@@ -135,30 +143,30 @@ def parse_args():
         "--ak",
         type=str,
         default="",
-        help="Access key for laboratory requests",
+        help=_("Access key for laboratory requests"),
     )
     parser.add_argument(
         "--sk",
         type=str,
         default="",
-        help="Secret key for laboratory requests",
+        help=_("Secret key for laboratory requests"),
     )
     parser.add_argument(
         "--addr",
         type=str,
         default="https://uni-lab.bohrium.com/api/v1",
-        help="Laboratory backend address",
+        help=_("Laboratory backend address"),
     )
     parser.add_argument(
         "--skip_env_check",
         action="store_true",
-        help="Skip environment dependency check on startup",
+        help=_("Skip environment dependency check on startup"),
     )
     parser.add_argument(
         "--complete_registry",
         action="store_true",
         default=False,
-        help="Complete registry information",
+        help=_("Complete registry information"),
     )
     parser.add_argument(
         "--check_mode",
@@ -169,7 +177,7 @@ def parse_args():
     parser.add_argument(
         "--no_update_feedback",
         action="store_true",
-        help="Disable sending update feedback to server",
+        help=_("Disable sending update feedback to server"),
     )
     # workflow upload subcommand
     workflow_parser = subparsers.add_parser(
@@ -182,7 +190,7 @@ def parse_args():
         "--workflow_file",
         type=str,
         required=True,
-        help="Path to the workflow file (JSON format)",
+        help=_("Path to the workflow file (JSON format)"),
     )
     workflow_parser.add_argument(
         "-n",
@@ -196,13 +204,13 @@ def parse_args():
         type=str,
         nargs="*",
         default=[],
-        help="Tags for the workflow (space-separated)",
+        help=_("Tags for the workflow (space-separated)"),
     )
     workflow_parser.add_argument(
         "--published",
         action="store_true",
         default=False,
-        help="Whether to publish the workflow (default: False)",
+        help=_("Whether to publish the workflow (default: False)"),
     )
     return parser
 
@@ -223,10 +231,10 @@ def main():
         from unilabos.utils.environment_check import check_environment
 
         if not check_environment(auto_install=True):
-            print_status("环境检查失败，程序退出", "error")
+            print_status(_("环境检查失败，程序退出"), "error")
             os._exit(1)
     else:
-        print_status("跳过环境依赖检查", "warning")
+        print_status(_("跳过环境依赖检查"), "warning")
 
     # 加载配置文件，优先加载config，然后从env读取
     config_path = args_dict.get("config")
@@ -236,12 +244,12 @@ def main():
     # 当 skip_env_check 时，默认使用当前目录作为 working_dir
     if skip_env_check and not args_dict.get("working_dir") and not config_path:
         working_dir = os.path.abspath(os.getcwd())
-        print_status(f"跳过环境检查模式：使用当前目录作为工作目录 {working_dir}", "info")
+        print_status(_("跳过环境检查模式：使用当前目录作为工作目录 {working_dir}").format(working_dir=working_dir)), "info")
         # 检查当前目录是否有 local_config.py
         local_config_in_cwd = os.path.join(working_dir, "local_config.py")
         if os.path.exists(local_config_in_cwd):
             config_path = local_config_in_cwd
-            print_status(f"发现本地配置文件: {config_path}", "info")
+            print_status(_("发现本地配置文件: {config_path}").format(config_path=config_path)), "info")
         else:
             print_status(f"未指定config路径，可通过 --config 传入 local_config.py 文件路径", "info")
     elif os.getcwd().endswith("unilabos_data"):
@@ -279,7 +287,7 @@ def main():
             os._exit(1)
 
     # 加载配置文件 (check_mode 跳过)
-    print_status(f"当前工作目录为 {working_dir}", "info")
+    print_status(_("当前工作目录为 {working_dir}").format(working_dir=working_dir)), "info")
     if not check_mode:
         load_config_from_file(config_path)
 
@@ -292,13 +300,13 @@ def main():
 
     if args.addr != parser.get_default("addr"):
         if args.addr == "test":
-            print_status("使用测试环境地址", "info")
+            print_status(_("使用测试环境地址"), "info")
             HTTPConfig.remote_addr = "https://uni-lab.test.bohrium.com/api/v1"
         elif args.addr == "uat":
-            print_status("使用uat环境地址", "info")
+            print_status(_("使用uat环境地址"), "info")
             HTTPConfig.remote_addr = "https://uni-lab.uat.bohrium.com/api/v1"
         elif args.addr == "local":
-            print_status("使用本地环境地址", "info")
+            print_status(_("使用本地环境地址"), "info")
             HTTPConfig.remote_addr = "http://127.0.0.1:48197/api/v1"
         else:
             HTTPConfig.remote_addr = args.addr
@@ -306,25 +314,25 @@ def main():
     # 设置BasicConfig参数
     if args_dict.get("ak", ""):
         BasicConfig.ak = args_dict.get("ak", "")
-        print_status("传入了ak参数，优先采用传入参数！", "info")
+        print_status(_("传入了ak参数，优先采用传入参数！"), "info")
     if args_dict.get("sk", ""):
         BasicConfig.sk = args_dict.get("sk", "")
-        print_status("传入了sk参数，优先采用传入参数！", "info")
+        print_status(_("传入了sk参数，优先采用传入参数！"), "info")
     BasicConfig.working_dir = working_dir
 
     workflow_upload = args_dict.get("command") in ("workflow_upload", "wf")
 
     # 使用远程资源启动
     if not workflow_upload and args_dict["use_remote_resource"]:
-        print_status("使用远程资源启动", "info")
+        print_status(_("使用远程资源启动"), "info")
         from unilabos.app.web import http_client
 
         res = http_client.resource_get("host_node", False)
         if str(res.get("code", 0)) == "0" and len(res.get("data", [])) > 0:
-            print_status("远程资源已存在，使用云端物料！", "info")
+            print_status(_("远程资源已存在，使用云端物料！"), "info")
             args_dict["graph"] = None
         else:
-            print_status("远程资源不存在，本地将进行首次上报！", "info")
+            print_status(_("远程资源不存在，本地将进行首次上报！"), "info")
 
     BasicConfig.port = args_dict["port"] if args_dict["port"] else BasicConfig.port
     BasicConfig.disable_browser = args_dict["disable_browser"] or BasicConfig.disable_browser
@@ -362,33 +370,33 @@ def main():
 
     # Check mode: complete_registry 完成后直接退出，git diff 检测由 CI workflow 执行
     if check_mode:
-        print_status("Check mode: complete_registry 完成，退出", "info")
+        print_status(_("Check mode: complete_registry 完成，退出"), "info")
         os._exit(0)
 
     if BasicConfig.upload_registry:
         # 设备注册到服务端 - 需要 ak 和 sk
         if BasicConfig.ak and BasicConfig.sk:
-            print_status("开始注册设备到服务端...", "info")
+            print_status(_("开始注册设备到服务端..."), "info")
             try:
                 register_devices_and_resources(lab_registry)
-                print_status("设备注册完成", "info")
+                print_status(_("设备注册完成"), "info")
             except Exception as e:
-                print_status(f"设备注册失败: {e}", "error")
+                print_status(_("设备注册失败: {error}").format(error=e)), "error")
         else:
-            print_status("未提供 ak 和 sk，跳过设备注册", "info")
+            print_status(_("未提供 ak 和 sk，跳过设备注册"), "info")
     else:
-        print_status("本次启动注册表不报送云端，如果您需要联网调试，请在启动命令增加--upload_registry", "warning")
+        print_status(_("本次启动注册表不报送云端，如果您需要联网调试，请在启动命令增加--upload_registry"), "warning")
 
     # 处理 workflow_upload 子命令
     if workflow_upload:
         from unilabos.workflow.wf_utils import handle_workflow_upload_command
 
         handle_workflow_upload_command(args_dict)
-        print_status("工作流上传完成，程序退出", "info")
+        print_status(_("工作流上传完成，程序退出"), "info")
         os._exit(0)
 
     if not BasicConfig.ak or not BasicConfig.sk:
-        print_status("后续运行必须拥有一个实验室，请前往 https://uni-lab.bohrium.com 注册实验室！", "warning")
+        print_status(_("后续运行必须拥有一个实验室，请前往 https://uni-lab.bohrium.com 注册实验室！"), "warning")
         os._exit(1)
     graph: nx.Graph
     resource_tree_set: ResourceTreeSet
