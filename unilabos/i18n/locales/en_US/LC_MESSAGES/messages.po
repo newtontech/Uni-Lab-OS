@@ -1,0 +1,564 @@
+# English translations for Uni-Lab-OS
+# Copyright (C) 2026 Uni-Lab-OS Team
+# This file is distributed under the same license as the Uni-Lab-OS package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Uni-Lab-OS 0.10.17\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-28 04:00+0800\n"
+"PO-Revision-Date: 2026-02-28 04:00+0800\n"
+"Last-Translator: Uni-Lab-OS Team\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: unilabos/app/main.py
+msgid "Start Uni-Lab Edge server."
+msgstr "Start Uni-Lab Edge server."
+
+#: unilabos/app/main.py
+msgid "Physical setup graph file path."
+msgstr "Physical setup graph file path."
+
+#: unilabos/app/main.py
+msgid "Controllers config file path."
+msgstr "Controllers config file path."
+
+#: unilabos/app/main.py
+msgid "Path to the registry directory"
+msgstr "Path to the registry directory"
+
+#: unilabos/app/main.py
+msgid "Path to the working directory"
+msgstr "Path to the working directory"
+
+#: unilabos/app/main.py
+msgid "Choose the backend to run with: 'ros', 'simple', or 'automancer'."
+msgstr "Choose the backend to run with: 'ros', 'simple', or 'automancer'."
+
+#: unilabos/app/main.py
+msgid "Bridges to connect to. Now support 'websocket' and 'fastapi'."
+msgstr "Bridges to connect to. Now support 'websocket' and 'fastapi'."
+
+#: unilabos/app/main.py
+msgid "Run the backend as slave node (without host privileges)."
+msgstr "Run the backend as slave node (without host privileges)."
+
+#: unilabos/app/main.py
+msgid "Skip waiting for host service in slave mode"
+msgstr "Skip waiting for host service in slave mode"
+
+#: unilabos/app/main.py
+msgid "Upload registry information when starting unilab"
+msgstr "Upload registry information when starting unilab"
+
+#: unilabos/app/main.py
+msgid "Use remote resources when starting unilab"
+msgstr "Use remote resources when starting unilab"
+
+#: unilabos/app/main.py
+msgid "Configuration file path, supports .py format Python config files"
+msgstr "Configuration file path, supports .py format Python config files"
+
+#: unilabos/app/main.py
+msgid "Port for web service information page"
+msgstr "Port for web service information page"
+
+#: unilabos/app/main.py
+msgid "Disable opening information page on startup"
+msgstr "Disable opening information page on startup"
+
+#: unilabos/app/main.py
+msgid "Enable 2D visualization when starting pylabrobot instance"
+msgstr "Enable 2D visualization when starting pylabrobot instance"
+
+#: unilabos/app/main.py
+msgid "Choose visualization tool: rviz, web, or disable"
+msgstr "Choose visualization tool: rviz, web, or disable"
+
+#: unilabos/app/main.py
+msgid "Access key for laboratory requests"
+msgstr "Access key for laboratory requests"
+
+#: unilabos/app/main.py
+msgid "Secret key for laboratory requests"
+msgstr "Secret key for laboratory requests"
+
+#: unilabos/app/main.py
+msgid "Laboratory backend address"
+msgstr "Laboratory backend address"
+
+#: unilabos/app/main.py
+msgid "Skip environment dependency check on startup"
+msgstr "Skip environment dependency check on startup"
+
+#: unilabos/app/main.py
+msgid "Complete registry information"
+msgstr "Complete registry information"
+
+#: unilabos/app/main.py
+msgid "Run in check mode for CI: validates registry imports and ensures no file changes"
+msgstr "Run in check mode for CI: validates registry imports and ensures no file changes"
+
+#: unilabos/app/main.py
+msgid "Disable sending update feedback to server"
+msgstr "Disable sending update feedback to server"
+
+#: unilabos/app/main.py
+msgid "Upload workflow from xdl/json/python files"
+msgstr "Upload workflow from xdl/json/python files"
+
+#: unilabos/app/main.py
+msgid "Path to the workflow file (JSON format)"
+msgstr "Path to the workflow file (JSON format)"
+
+#: unilabos/app/main.py
+msgid "Workflow name, if not provided will use the name from file or filename"
+msgstr "Workflow name, if not provided will use the name from file or filename"
+
+#: unilabos/app/main.py
+msgid "Tags for the workflow (space-separated)"
+msgstr "Tags for the workflow (space-separated)"
+
+#: unilabos/app/main.py
+msgid "Whether to publish the workflow (default: False)"
+msgstr "Whether to publish the workflow (default: False)"
+
+#: unilabos/app/main.py
+msgid "配置文件 {config_path} 不存在"
+msgstr "Configuration file {config_path} does not exist"
+
+#: unilabos/app/main.py
+msgid "配置文件 {config_path} 不是Python文件，必须以.py结尾"
+msgstr "Configuration file {config_path} is not a Python file, must end with .py"
+
+#: unilabos/app/main.py
+msgid "启动 UniLab-OS时，配置文件参数未正确传入 --config '{config_path}' 尝试本地配置..."
+msgstr "When starting UniLab-OS, the config file parameter was not properly passed via --config '{config_path}', trying local config..."
+
+#: unilabos/app/main.py
+msgid "环境检查失败，程序退出"
+msgstr "Environment check failed, program exiting"
+
+#: unilabos/app/main.py
+msgid "跳过环境依赖检查"
+msgstr "Skipping environment dependency check"
+
+#: unilabos/app/main.py
+msgid "跳过环境检查模式：使用当前目录作为工作目录 {working_dir}"
+msgstr "Skip env check mode: using current directory as working directory {working_dir}"
+
+#: unilabos/app/main.py
+msgid "发现本地配置文件: {config_path}"
+msgstr "Found local config file: {config_path}"
+
+#: unilabos/app/main.py
+msgid "未指定config路径，可通过 --config 传入 local_config.py 文件路径"
+msgstr "Config path not specified, pass local_config.py file path via --config"
+
+#: unilabos/app/main.py
+msgid "当前工作目录 {working_dir} 未找到local_config.py，请通过 --config 传入 local_config.py 文件路径"
+msgstr "local_config.py not found in current working directory {working_dir}, please pass local_config.py file path via --config"
+
+#: unilabos/app/main.py
+msgid "当前工作目录为 {working_dir}"
+msgstr "Current working directory is {working_dir}"
+
+#: unilabos/app/main.py
+msgid "使用测试环境地址"
+msgstr "Using test environment address"
+
+#: unilabos/app/main.py
+msgid "使用uat环境地址"
+msgstr "Using UAT environment address"
+
+#: unilabos/app/main.py
+msgid "使用本地环境地址"
+msgstr "Using local environment address"
+
+#: unilabos/app/main.py
+msgid "传入了ak参数，优先采用传入参数！"
+msgstr "AK parameter provided, using provided parameter!"
+
+#: unilabos/app/main.py
+msgid "传入了sk参数，优先采用传入参数！"
+msgstr "SK parameter provided, using provided parameter!"
+
+#: unilabos/app/main.py
+msgid "使用远程资源启动"
+msgstr "Starting with remote resources"
+
+#: unilabos/app/main.py
+msgid "远程资源已存在，使用云端物料！"
+msgstr "Remote resources exist, using cloud resources!"
+
+#: unilabos/app/main.py
+msgid "远程资源不存在，本地将进行首次上报！"
+msgstr "Remote resources do not exist, local first-time report will be made!"
+
+#: unilabos/app/main.py
+msgid "Check mode: complete_registry 完成，退出"
+msgstr "Check mode: complete_registry finished, exiting"
+
+#: unilabos/app/main.py
+msgid "开始注册设备到服务端..."
+msgstr "Starting device registration to server..."
+
+#: unilabos/app/main.py
+msgid "设备注册完成"
+msgstr "Device registration completed"
+
+#: unilabos/app/main.py
+msgid "设备注册失败: {error}"
+msgstr "Device registration failed: {error}"
+
+#: unilabos/app/main.py
+msgid "未提供 ak 和 sk，跳过设备注册"
+msgstr "AK and SK not provided, skipping device registration"
+
+#: unilabos/app/main.py
+msgid "本次启动注册表不报送云端，如果您需要联网调试，请在启动命令增加--upload_registry"
+msgstr "Registry will not be uploaded to cloud this time, add --upload_registry to startup command if you need network debugging"
+
+#: unilabos/app/main.py
+msgid "工作流上传完成，程序退出"
+msgstr "Workflow upload completed, program exiting"
+
+#: unilabos/app/main.py
+msgid "后续运行必须拥有一个实验室，请前往 https://uni-lab.bohrium.com 注册实验室！"
+msgstr "A laboratory is required for subsequent operations, please register at https://uni-lab.bohrium.com!"
+
+#: unilabos/app/main.py
+msgid "从 {file_path} 读取配置"
+msgstr "Reading configuration from {file_path}"
+
+#: unilabos/app/main.py
+msgid "首次运行，已为您创建配置文件模板: {example_config}"
+msgstr "First run, created config file template for you: {example_config}"
+
+#: unilabos/app/main.py
+msgid "有效负载: {count} 个节点"
+msgstr "Valid payload: {count} nodes"
+
+#: unilabos/app/main.py
+msgid "图文件不存在，清空资源"
+msgstr "Graph file does not exist, clearing resources"
+
+#: unilabos/app/main.py
+msgid "正在保存配置文件..."
+msgstr "Saving configuration file..."
+
+#: unilabos/app/main.py
+msgid "设备信息已保存到 {path}"
+msgstr "Device information saved to {path}"
+
+#: unilabos/app/main.py
+msgid "Backend {backend} not supported. Use 'ros', 'simple', or 'automancer'."
+msgstr "Backend {backend} not supported. Use 'ros', 'simple', or 'automancer'."
+
+#: unilabos/app/main.py
+msgid "启动ROS后端..."
+msgstr "Starting ROS backend..."
+
+#: unilabos/app/main.py
+msgid "ROS后端启动完成"
+msgstr "ROS backend startup completed"
+
+#: unilabos/app/main.py
+msgid "正在启动Web服务器..."
+msgstr "Starting Web server..."
+
+#: unilabos/app/main.py
+msgid "Web服务器启动完成，地址: {url}"
+msgstr "Web server started, address: {url}"
+
+#: unilabos/app/main.py
+msgid "Backend task failed: {error}"
+msgstr "Backend task failed: {error}"
+
+#: unilabos/app/main.py
+msgid "Interrupted by user, exiting..."
+msgstr "Interrupted by user, exiting..."
+
+#: unilabos/app/main.py
+msgid "Program terminated"
+msgstr "Program terminated"
+
+#: unilabos/utils/banner_print.py
+msgid "Version:"
+msgstr "Version:"
+
+#: unilabos/utils/banner_print.py
+msgid "System:"
+msgstr "System:"
+
+#: unilabos/utils/banner_print.py
+msgid "Python:"
+msgstr "Python:"
+
+#: unilabos/utils/banner_print.py
+msgid "Time:"
+msgstr "Time:"
+
+#: unilabos/utils/banner_print.py
+msgid "Configuration:"
+msgstr "Configuration:"
+
+#: unilabos/utils/banner_print.py
+msgid "Backend:"
+msgstr "Backend:"
+
+#: unilabos/utils/banner_print.py
+msgid "Bridges:"
+msgstr "Bridges:"
+
+#: unilabos/utils/banner_print.py
+msgid "Host Mode:"
+msgstr "Host Mode:"
+
+#: unilabos/utils/banner_print.py
+msgid "Master"
+msgstr "Master"
+
+#: unilabos/utils/banner_print.py
+msgid "Slave"
+msgstr "Slave"
+
+#: unilabos/utils/banner_print.py
+msgid "Graph:"
+msgstr "Graph:"
+
+#: unilabos/utils/banner_print.py
+msgid "Devices:"
+msgstr "Devices:"
+
+#: unilabos/utils/banner_print.py
+msgid "Resources:"
+msgstr "Resources:"
+
+#: unilabos/utils/banner_print.py
+msgid "Controllers:"
+msgstr "Controllers:"
+
+#: unilabos/utils/banner_print.py
+msgid "INFO"
+msgstr "INFO"
+
+#: unilabos/utils/banner_print.py
+msgid "SUCCESS"
+msgstr "SUCCESS"
+
+#: unilabos/utils/banner_print.py
+msgid "WARNING"
+msgstr "WARNING"
+
+#: unilabos/utils/banner_print.py
+msgid "ERROR"
+msgstr "ERROR"
+
+#: unilabos/utils/environment_check.py
+msgid "正在{action} {package_name} ({pip_name})..."
+msgstr "{action} {package_name} ({pip_name})..."
+
+#: unilabos/utils/environment_check.py
+msgid "安装"
+msgstr "Installing"
+
+#: unilabos/utils/environment_check.py
+msgid "升级"
+msgstr "Upgrading"
+
+#: unilabos/utils/environment_check.py
+msgid "✓ {package_name} {action}成功"
+msgstr "✓ {package_name} {action} successful"
+
+#: unilabos/utils/environment_check.py
+msgid "× {package_name} {action}失败: {error}"
+msgstr "× {package_name} {action} failed: {error}"
+
+#: unilabos/utils/environment_check.py
+msgid "× {package_name} {action}超时"
+msgstr "× {package_name} {action} timed out"
+
+#: unilabos/utils/environment_check.py
+msgid "× {package_name} {action}异常: {error}"
+msgstr "× {package_name} {action} exception: {error}"
+
+#: unilabos/utils/environment_check.py
+msgid "开始检查环境依赖..."
+msgstr "Starting environment dependency check..."
+
+#: unilabos/utils/environment_check.py
+msgid "✓ 所有依赖包检查完成，环境正常"
+msgstr "✓ All dependency packages checked, environment normal"
+
+#: unilabos/utils/environment_check.py
+msgid "发现 {count} 个缺失的包"
+msgstr "Found {count} missing packages"
+
+#: unilabos/utils/environment_check.py
+msgid "发现 {count} 个需要升级的包"
+msgstr "Found {count} packages needing upgrade"
+
+#: unilabos/utils/environment_check.py
+msgid "缺失以下包:"
+msgstr "Missing the following packages:"
+
+#: unilabos/utils/environment_check.py
+msgid "  - {import_name} (pip install {pip_name})"
+msgstr "  - {import_name} (pip install {pip_name})"
+
+#: unilabos/utils/environment_check.py
+msgid "需要升级以下包:"
+msgstr "Packages needing upgrade:"
+
+#: unilabos/utils/environment_check.py
+msgid "  - {import_name} (pip install --upgrade {pip_name})"
+msgstr "  - {import_name} (pip install --upgrade {pip_name})"
+
+#: unilabos/utils/environment_check.py
+msgid "开始自动安装 {count} 个缺失的包..."
+msgstr "Starting automatic installation of {count} missing packages..."
+
+#: unilabos/utils/environment_check.py
+msgid "✓ 成功安装 {success_count}/{total_count} 个包"
+msgstr "✓ Successfully installed {success_count}/{total_count} packages"
+
+#: unilabos/utils/environment_check.py
+msgid "开始自动升级 {count} 个包..."
+msgstr "Starting automatic upgrade of {count} packages..."
+
+#: unilabos/utils/environment_check.py
+msgid "✓ 成功升级 {success_count}/{total_count} 个包"
+msgstr "✓ Successfully upgraded {success_count}/{total_count} packages"
+
+#: unilabos/utils/environment_check.py
+msgid "有 {count} 个包操作失败:"
+msgstr "{count} package operations failed:"
+
+#: unilabos/utils/environment_check.py
+msgid "  - {import_name} ({pip_name})"
+msgstr "  - {import_name} ({pip_name})"
+
+#: unilabos/utils/environment_check.py
+msgid "验证安装结果..."
+msgstr "Verifying installation results..."
+
+#: unilabos/resources/graphio.py
+msgid "{count} Resources loaded:"
+msgstr "{count} Resources loaded:"
+
+#: unilabos/resources/graphio.py
+msgid "Warning: Node {node_id} missing 'type', defaulting to 'device'"
+msgstr "Warning: Node {node_id} missing 'type', defaulting to 'device'"
+
+#: unilabos/resources/graphio.py
+msgid "Warning: Node {node_id} missing 'name', defaulting to {name}"
+msgstr "Warning: Node {node_id} missing 'name', defaulting to {name}"
+
+#: unilabos/resources/graphio.py
+msgid "Failed to standardize node {node_id}:\n{traceback}"
+msgstr "Failed to standardize node {node_id}:\n{traceback}"
+
+#: unilabos/resources/graphio.py
+msgid "GraphML converted to JSON and saved to {path}"
+msgstr "GraphML converted to JSON and saved to {path}"
+
+#: unilabos/resources/warehouse.py
+msgid "无效的位置: layer={layer}, row={row}, col={col}"
+msgstr "Invalid location: layer={layer}, row={row}, col={col}"
+
+#: unilabos/resources/graphio.py
+msgid "pylabrobot not found"
+msgstr "pylabrobot not found"
+
+#: unilabos/resources/graphio.py
+msgid "资源 model '{model}' 未在 MATERIAL_TYPE_MAPPINGS 中配置"
+msgstr "Resource model '{model}' not configured in MATERIAL_TYPE_MAPPINGS"
+
+#: unilabos/resources/graphio.py
+msgid "子物料 model '{model}' 未在 MATERIAL_TYPE_MAPPINGS 中配置"
+msgstr "Child material model '{model}' not configured in MATERIAL_TYPE_MAPPINGS"
+
+#: unilabos/resources/graphio.py
+msgid "No more support for unilabos Resource class {class_name}"
+msgstr "No more support for unilabos Resource class {class_name}"
+
+#: unilabos/resources/resource_tracker.py
+msgid "发现重复的uuid: {uuid}"
+msgstr "Duplicate UUID found: {uuid}"
+
+#: unilabos/resources/resource_tracker.py
+msgid "资源 {resource} has no location"
+msgstr "Resource {resource} has no location"
+
+#: unilabos/resources/itemized_carrier.py
+msgid "a site with index {idx} already exists"
+msgstr "a site with index {idx} already exists"
+
+#: unilabos/resources/itemized_carrier.py
+msgid "spot {spot} already has a resource, {resource}"
+msgstr "spot {spot} already has a resource, {resource}"
+
+#: unilabos/resources/itemized_carrier.py
+msgid "Resource {resource} is not assigned to this carrier"
+msgstr "Resource {resource} is not assigned to this carrier"
+
+#: unilabos/resources/itemized_carrier.py
+msgid "Invalid identifier type: {type_name}"
+msgstr "Invalid identifier type: {type_name}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "已不支持 字典 版本的RegularContainer"
+msgstr "Dictionary version of RegularContainer is no longer supported"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "tree_set不能为None"
+msgstr "tree_set cannot be None"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "来源物料{resource}没有unilabos_uuid属性，无法转运"
+msgstr "Source material {resource} has no unilabos_uuid attribute, cannot transfer"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "目标物料{resource}没有unilabos_uuid属性，无法转运"
+msgstr "Target material {resource} has no unilabos_uuid attribute, cannot transfer"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "[{device_id} Node-Resource] Service {service} not available"
+msgstr "[{device_id} Node-Resource] Service {service} not available"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "ResourceSlot参数转换失败: {name}"
+msgstr "ResourceSlot parameter conversion failed: {name}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "ResourceSlot列表参数转换失败: {name}"
+msgstr "ResourceSlot list parameter conversion failed: {name}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "至少需要提供一个 UUID"
+msgstr "At least one UUID must be provided"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "资源查询超时: {uuid_list}"
+msgstr "Resource query timeout: {uuid_list}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "资源查询返回空结果: {uuid_list}"
+msgstr "Resource query returned empty result: {uuid_list}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "资源查询返回空树: {data}"
+msgstr "Resource query returned empty tree: {data}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "资源转换得到多个实例: {resource}"
+msgstr "Resource conversion resulted in multiple instances: {resource}"
+
+#: unilabos/ros/nodes/base_device_node.py
+msgid "错误: 设备实例创建失败"
+msgstr "Error: Device instance creation failed"

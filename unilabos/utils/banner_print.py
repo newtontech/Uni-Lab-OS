@@ -11,6 +11,16 @@ import importlib.metadata
 from typing import Dict, Any
 
 
+def _get_translator():
+    """获取翻译函数，支持动态切换语言"""
+    try:
+        from unilabos.i18n import _ as translator
+        return translator
+    except ImportError:
+        # 如果 i18n 模块不可用，使用空翻译
+        return lambda message: message
+
+
 # ANSI颜色代码
 class Colors:
     """ANSI颜色代码集合"""
@@ -75,6 +85,8 @@ def print_unilab_banner(args_dict: Dict[str, Any], show_config: bool = True) -> 
         args_dict: 命令行参数字典
         show_config: 是否显示配置信息
     """
+    _ = _get_translator()
+    
     # 检测终端是否支持ANSI颜色
     if platform.system() == "Windows":
         os.system("")  # 启用Windows终端中的ANSI支持
@@ -96,10 +108,10 @@ def print_unilab_banner(args_dict: Dict[str, Any], show_config: bool = True) -> 
 
     # 显示版本信息
     system_info = f"""
-{Colors.YELLOW}Version:{Colors.RESET} {Colors.BRIGHT_GREEN}{version}{Colors.RESET}
-{Colors.YELLOW}System:{Colors.RESET} {Colors.WHITE}{platform.system()} {platform.release()}{Colors.RESET}
-{Colors.YELLOW}Python:{Colors.RESET} {Colors.WHITE}{platform.python_version()}{Colors.RESET}
-{Colors.YELLOW}Time:{Colors.RESET} {Colors.WHITE}{current_time}{Colors.RESET}
+{Colors.YELLOW}{_("Version:")}{Colors.RESET} {Colors.BRIGHT_GREEN}{version}{Colors.RESET}
+{Colors.YELLOW}{_("System:")}{Colors.RESET} {Colors.WHITE}{platform.system()} {platform.release()}{Colors.RESET}
+{Colors.YELLOW}{_("Python:")}{Colors.RESET} {Colors.WHITE}{platform.python_version()}{Colors.RESET}
+{Colors.YELLOW}{_("Time:")}{Colors.RESET} {Colors.WHITE}{current_time}{Colors.RESET}
 {Colors.BRIGHT_WHITE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{Colors.RESET}"""
 
     # 打印横幅和系统信息
@@ -117,37 +129,39 @@ def print_config(args_dict: Dict[str, Any]) -> None:
     Args:
         args_dict: 命令行参数字典
     """
-    config_info = f"{Colors.BRIGHT_BLUE}{Colors.BOLD}Configuration:{Colors.RESET}\n"
+    _ = _get_translator()
+    
+    config_info = f"{Colors.BRIGHT_BLUE}{Colors.BOLD}{_('Configuration:')}{Colors.RESET}\n"
 
     # 后端信息
     if "backend" in args_dict:
-        config_info += f"{Colors.CYAN}• Backend:{Colors.RESET} "
+        config_info += f"{Colors.CYAN}• {_('Backend:')}{Colors.RESET} "
         config_info += f"{Colors.WHITE}{args_dict['backend']}{Colors.RESET}\n"
 
     # 桥接信息
     if "app_bridges" in args_dict:
-        config_info += f"{Colors.CYAN}• Bridges:{Colors.RESET} "
+        config_info += f"{Colors.CYAN}• {_('Bridges:')}{Colors.RESET} "
         config_info += f"{Colors.WHITE}{', '.join(args_dict['app_bridges'])}{Colors.RESET}\n"
 
     # 主机模式
     if "without_host" in args_dict:
-        mode = "Slave" if args_dict["without_host"] else "Master"
-        config_info += f"{Colors.CYAN}• Host Mode:{Colors.RESET} {Colors.WHITE}{mode}{Colors.RESET}\n"
+        mode = _("Slave") if args_dict["without_host"] else _("Master")
+        config_info += f"{Colors.CYAN}• {_('Host Mode:')}{Colors.RESET} {Colors.WHITE}{mode}{Colors.RESET}\n"
 
     # 如果有图或设备信息，显示它们
     if "graph" in args_dict and args_dict["graph"] is not None:
-        config_info += f"{Colors.CYAN}• Graph:{Colors.RESET} "
+        config_info += f"{Colors.CYAN}• {_('Graph:')}{Colors.RESET} "
         config_info += f"{Colors.WHITE}{args_dict['graph']}{Colors.RESET}\n"
     elif "devices" in args_dict and args_dict["devices"] is not None:
-        config_info += f"{Colors.CYAN}• Devices:{Colors.RESET} "
+        config_info += f"{Colors.CYAN}• {_('Devices:')}{Colors.RESET} "
         config_info += f"{Colors.WHITE}{args_dict['devices']}{Colors.RESET}\n"
         if "resources" in args_dict and args_dict["resources"] is not None:
-            config_info += f"{Colors.CYAN}• Resources:{Colors.RESET} "
+            config_info += f"{Colors.CYAN}• {_('Resources:')}{Colors.RESET} "
             config_info += f"{Colors.WHITE}{args_dict['resources']}{Colors.RESET}\n"
 
     # 控制器配置
     if "controllers" in args_dict and args_dict["controllers"] is not None:
-        config_info += f"{Colors.CYAN}• Controllers:{Colors.RESET} "
+        config_info += f"{Colors.CYAN}• {_('Controllers:')}{Colors.RESET} "
         config_info += f"{Colors.WHITE}{args_dict['controllers']}{Colors.RESET}\n"
 
     # 打印结束分隔线
@@ -164,20 +178,22 @@ def print_status(message: str, status_type: str = "info") -> None:
         message: 要打印的消息
         status_type: 状态类型（'info', 'success', 'warning', 'error'）
     """
+    _ = _get_translator()
+    
     color = Colors.WHITE
     prefix = ""
 
     if status_type == "info":
         color = Colors.BLUE
-        prefix = "INFO"
+        prefix = _("INFO")
     elif status_type == "success":
         color = Colors.GREEN
-        prefix = "SUCCESS"
+        prefix = _("SUCCESS")
     elif status_type == "warning":
         color = Colors.YELLOW
-        prefix = "WARNING"
+        prefix = _("WARNING")
     elif status_type == "error":
         color = Colors.RED
-        prefix = "ERROR"
+        prefix = _("ERROR")
 
     print(f"{color}[{prefix}]{Colors.RESET} {message}")
