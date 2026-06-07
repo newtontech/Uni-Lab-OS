@@ -31,6 +31,28 @@ Detailed documentation can be found at:
 
 ## Quick Start
 
+### Minimal Lab Workflow
+
+For a first runnable workflow, start with simulation or a mocked device before connecting real instruments:
+
+1. Install the standard `unilabos` environment.
+2. Run one boot example from the documentation.
+3. Confirm messages flow through `unilabos_msgs`.
+4. Replace the mocked device with one real device driver.
+5. Record the device model, connection type, safety constraints, and expected state transitions in the recipe.
+
+```mermaid
+flowchart LR
+  A["Recipe"] --> B["Uni-Lab-OS workflow"]
+  B --> C["unilabos_msgs"]
+  C --> D["Mock device or simulator"]
+  C --> E["Real instrument driver"]
+  D --> F["Verified run log"]
+  E --> F
+```
+
+Recommended first acceptance check: one recipe can run end-to-end with a mocked device and produce a reviewed run log before any real instrument is connected.
+
 ### 1. Setup Conda Environment
 
 Uni-Lab-OS recommends using `mamba` for environment management. Choose the package that fits your needs:
